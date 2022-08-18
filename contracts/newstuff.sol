@@ -74,4 +74,9 @@ contract LegacyContract {
 
         return Roles.unregistered;
     } 
+
+    function getChild(address _address) public view returns(string memory, string memory, uint, uint){
+        Child storage child = childrenMap[_address]; 
+        return (child.firstName, child.lastName, child.balance, child.age);
+    }
 }
