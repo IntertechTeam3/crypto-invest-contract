@@ -15,7 +15,7 @@ contract kubra {
         string lastName;
         uint256 balance;
         uint256 age;
-        // dateOfBirth
+        uint256 dateOfBirth;
     }
 
     struct Parent {
@@ -52,7 +52,7 @@ contract kubra {
         parent.lastName=_lastName;
     }
 
-    /*function addChild(address _address,string memory _firstName,string memory _lastName) public userCheck(_address){
+    function addChild(address _address,string memory _firstName,string memory _lastName) public userCheck(_address){
         Child storage child = childrenMap[_address]; 
         child.addresses=_address;
         child.firstName=_firstName;
@@ -60,7 +60,7 @@ contract kubra {
 
         Parent storage parent = parentsMap[msg.sender];
         parent.childrenAddresses.push(_address);
-    }*/
+    }
 
     function addressControl(address _address) public view returns(Roles){
         if(_address == owner) return Roles.admin;
@@ -99,7 +99,7 @@ contract kubra {
         //amount burada wei cinsinden
     }
 
-    function parentChild(address _address) private view returns(bool){
+    function parentChild(address _address) public view returns(bool){
         Parent storage parent = parentsMap[msg.sender];
         for(uint256 i=0; i <= parent.childrenAddresses.length ;i++){
             if(parent.childrenAddresses[i] == _address) return true;
@@ -108,11 +108,11 @@ contract kubra {
     } 
 
 
-    /*function childWithdraw(address payable _address,uint256 date) public {
-        Child storage child = childrenMap[_address]; 
+    function childWithdraw(uint256 date) payable public {
+        Child storage child = childrenMap[msg.sender]; 
         require(child.dateOfBirth >= date,"cekemezsiniz");
         payable(msg.sender).transfer(child.balance);
-    }*/
+    }
 
     
     
