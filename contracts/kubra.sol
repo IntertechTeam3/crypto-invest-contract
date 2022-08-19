@@ -108,11 +108,11 @@ contract kubra {
     } 
 
 
-    function childWithdraw(uint256 date) payable public {
-        Child storage child = childrenMap[msg.sender]; 
+    /*function childWithdraw(address payable _address,uint256 date) public {
+        Child storage child = childrenMap[_address]; 
         require(child.dateOfBirth >= date,"cekemezsiniz");
         payable(msg.sender).transfer(child.balance);
-    }
+    }*/
 
     
     
